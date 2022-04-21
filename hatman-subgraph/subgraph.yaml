@@ -1,0 +1,30 @@
+specVersion: 0.0.2
+description: Hatman for BSC
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Hatman
+    network: rinkeby
+    source:
+      address: "0x6400358C889d389956FCf64D9621E491f4a2AD26"
+      abi: Hatman
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - DepositItem
+        - WithdrawItem
+        - CheckItem
+      abis:
+        - name: Hatman
+          file: ./abis/Hatman.json
+      eventHandlers:
+        - event: Deposit(uint256,address,uint256,uint256)
+          handler: handleDeposit
+        - event: Withdraw(uint256,address,uint256,uint256)
+          handler: handleWithdraw
+        - event: Checked(uint256,address,uint256,uint256,bool,uint256)
+          handler: handleChecked
+      file: ./src/mapping.ts

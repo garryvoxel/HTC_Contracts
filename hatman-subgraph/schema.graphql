@@ -1,0 +1,22 @@
+type DepositItem @entity {
+  id: ID!
+  from: Bytes!
+  amount: BigInt!  
+  timestamp: BigInt!
+}
+
+type WithdrawItem @entity {
+  id: ID!
+  to: Bytes!
+  amount: BigInt!  
+  timestamp: BigInt!
+}
+
+type CheckItem @entity {
+  id: ID!
+  account: Bytes!
+  offchainCredits: BigInt!  
+  onchainCredits: BigInt!
+  canRun: Boolean!
+  timestamp: BigInt!
+}
